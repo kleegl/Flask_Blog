@@ -11,6 +11,11 @@ from flaskr.db import get_db
 bp = Blueprint("auth", __name__, url_prefix="/auth")
 
 
+@bp.route("/test", methods=("GET", "POST"))
+def test_method():
+    return render_template("test.html")
+
+
 @bp.route("/register", methods=("GET", "POST"))
 def register():
     if request.method == "POST":
@@ -38,7 +43,7 @@ def register():
 
         flash(error)
 
-    return render_template("auth/register.html")
+    return render_template("register.html")
 
 
 @bp.route("/login", methods=("GET", "POST"))
@@ -64,8 +69,7 @@ def login():
 
         flash(error)
 
-    return render_template("auth/login.html")
-
+    return render_template('login.html')
 
 @bp.before_app_request
 def load_logged_in_user():
